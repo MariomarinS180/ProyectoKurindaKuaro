@@ -133,7 +133,7 @@ inner join categorias on productos.id_categoria = categorias.id order by id DESC
                 data-precio="<?php echo $f['precio']; ?>"
                 data-inventario="<?php echo $f['inventario']; ?>"
                 data-categoria="<?php echo $f['id_categoria']; ?>"
-                data-talla="<?php echo $f['talla']; ?>"
+                data-talla="<?php echo $f['empaque']; ?>"
                 data-color="<?php echo $f['color']; ?>"
 
                 data-bs-toggle="modal" data-bs-target="#modalEditar">
@@ -299,7 +299,7 @@ inner join categorias on productos.id_categoria = categorias.id order by id DESC
       </div>
     </div>
   </div>
-  <?php include("./layouts/footer.php");?>
+
 </div>
 <!-- ./wrapper -->
 

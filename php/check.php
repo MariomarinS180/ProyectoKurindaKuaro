@@ -21,7 +21,15 @@ if(isset($_POST['email']) && isset($_POST['pass'])){
             'imagen'=>$im_per,
             'nivel'=>$nivel
         );
+
         header("Location: ../admin");
+
+        if($nivel === "cliente"){
+            header("Location: ../index.php");
+        }else {
+            header("Location: ../admin");
+        }
+
     }else{
         header("Location: ../login.php?error=Credenciales incorresctas");
     }

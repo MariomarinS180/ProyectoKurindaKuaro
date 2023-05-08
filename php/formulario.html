@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de envío de JSON desde PHP hacia JS</title>
+</head>
+<body>
+
+    <script>
+        // Obtener el objeto JSON desde el archivo PHP utilizando una petición Ajax
+        const request = new XMLHttpRequest();
+        request.open('GET', 'datos.json');
+        request.responseType = 'json';
+        request.send();
+        
+        request.onload = function() {
+            // Procesar y mostrar los datos en la página
+            const datos = request.response;
+            for (let i = 0; i < datos.length; i++) {
+                console.log('ID ' + datos[i].id + ' ID Venta' + datos[i].id_venta + 'id_producto' + datos[i].id_producto + 'cantidad' + datos[i].cantidad + 'precio' + datos[i].precio + 'subtotal' + datos[i].subtotal); 
+            }
+        };
+    </script>
+
+</body>
+</html>

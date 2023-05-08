@@ -312,7 +312,7 @@ $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono
       </div>
     </div>
   </div>
-  <?php include("./layouts/footer.php");?>
+
 </div>
 <!-- ./wrapper -->
 

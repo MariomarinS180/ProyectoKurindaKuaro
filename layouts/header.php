@@ -11,17 +11,18 @@
         </div>
 
         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-          <img src="logokurinda.png" alt="Logo" width="50" height="50">
-          <div class="site-logo">
-            <a href="index.php" class="js-logo-clone"> Kurindacuaro en Línea ;) </a>
 
+          <img src="images/logokurinda.png" alt="Image placeholder"  width="100" height="70" class="mb-3">
+          <div class="site-logo">
+            <a class="js-logo-clone"> Kurindacuaro en Línea ;) </a>
+           
           </div>
         </div>
         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
           <div class="site-top-icons">
             <ul>
-              <li><a href="#"><span class="icon icon-person"></span></a></li>
-              <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
+              <li><a href="perfil.php"><span class="icon icon-person"></span></a></li>
+              <li><a href="historial.php"><span class="icon icon-menu"></span></a></li>
               <li>
                 <a href="cart.php" class="site-cart">
                   <span class="icon icon-shopping_cart"></span>

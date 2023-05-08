@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^inicio$ index.php [L]
+RewriteRule ^carrito$ cart.php [L]

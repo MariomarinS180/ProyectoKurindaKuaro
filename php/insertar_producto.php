@@ -6,7 +6,7 @@ if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['prec
                            && isset($_POST['talla']) && isset($_POST['color'])){
 
                             $carpeta="../images/";
-                            $nombre = $_FILES['img']['name'];
+                            $nombre = $_FILES['img']['name'];//tomar
                             $temp=explode('.',$nombre);
                             $extension= end($temp);
                             $nombreFinal = time().'.'.$extension;

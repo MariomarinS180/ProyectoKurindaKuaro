@@ -2,7 +2,7 @@
     $servidor="localhost";
     $nombd="ku";
     $us="root";
-    $con="1234";
+    $con="";
     $conexion = new mysqli($servidor, $us, $con, $nombd);
     if($conexion -> connect_error ){
         die("No se pudo acceder");

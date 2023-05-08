@@ -30,6 +30,7 @@
 
       <div class="container">
         <h2>Conoce nuestras Galletas - ¡Elige tu favorita!</h2>
+         <a href="./php/devextreme/formulario.php"><h2>Ir al nuevo</h2> </a>
         <div class="row mb-5">
 
           <div class="col-md-9 order-2">
@@ -185,7 +186,7 @@
   </div>
 
 
-  <?php include("./layouts/header.php"); ?>
+  <?php include("./layouts/footer.php"); ?>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
