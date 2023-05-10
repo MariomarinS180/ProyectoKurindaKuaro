@@ -7,7 +7,7 @@ if(!isset($_SESSION['datos_login'])){
 }
 $arregloUsuario = $_SESSION['datos_login'];
 
-if($arregloUsuario['nivel'] != 'admin'){
+if($arregloUsuario['tipo'] != 'admin'){
   header("Location: ../index.php");
 }
 

@@ -7,9 +7,10 @@ if(!isset($_SESSION['datos_login'])){
 }
 $arregloUsuario = $_SESSION['datos_login'];
 
-if($arregloUsuario['nivel'] != 'admin'){
+if($arregloUsuario['tipo'] != 'admin'){
   header("Location: ../index.php");
 }
+$resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono, usuario.email from  ventas inner join usuario on ventas.id_usuario = usuario.id")or die($conexion->error);
 
 ?>
 
@@ -91,32 +92,32 @@ if($arregloUsuario['nivel'] != 'admin'){
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="../php/insertar_usuario.php" method="POST" enctype="multipart/form-data">
+        <form action="../php/insertar_distribuidor.php" method="POST" enctype="multipart/form-data" name="form">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Ingresa Distribuidor</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
         <div class="col-md-8">
+                <input type="text" name="distribuidor" class="form-control" id="distribuidor" hidden value="distribuidor">
                 <label for="inputEmail4" class="form-label">Correo Electronico</label>
-                <input type="email" class="form-control" id="correod">
+                <input type="email" name="correod" class="form-control" id="correod">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrad">
+                <input type="password" name="contrad" class="form-control" id="contrad">
             </div>
             <div class="col-md-8">
                 <label for="inputEmail4" class="form-label">Nombre completo</label>
-                <input type="text" class="form-control" id="nombred">
+                <input type="text" name="nombred" class="form-control" id="nombred">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">Ciudad</label>
-                <input type="text" class="form-control" id="ciudadd">
+                <input type="text" name="ciudadd" class="form-control" id="ciudadd">
             </div>
             <div class="col-md-8">
                 <label for="inputState" class="form-label">Estado</label>
-                <select class="custom-select" id="estadod">
+                <select class="custom-select" name="estadod" id="estadod">
                 <option selected>Open this select menu</option>
                 <option>Aguascalientes</option>
                 <option>Baja California</option>
@@ -153,48 +154,46 @@ if($arregloUsuario['nivel'] != 'admin'){
                 </select>
             </div>
             <div class="col-md-8">
-                <label for="inputPassword4" class="form-label">CURP</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="curpd" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
+            <label for="img">CURP</label>
+            <input type="file" name="curpdoc" placeholder="img" id="img" class="form-control" >
             </div>
             <div class="col-md-8">
                 <label for="inputCity" class="form-label">RFC</label>
-                <input type="text" class="form-control" id="rfcd">
-            </div>  
+                <input type="text" name="rfcd" class="form-control" id="rfcd">
+            </div>
             <div class="col-md-8">
-                <label for="inputPassword4" class="form-label">Constancia de situacion fiscal</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="constanciad" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
+                <label for="inputPassword4" class="form-label">Telefono</label>
+                <input type="number" name="telefonod" class="form-control" id="telefonod">
+            </div>
+            <div class="col-md-8">
+            <label for="img">Constancia de situacion fiscal</label>
+            <input type="file" name="constdoc" placeholder="img" id="img" class="form-control" >
             </div>
             <div class="col-md-8">
                 <label for="inputEmail4" class="form-label">Fecha de inicio como cliente</label>
-                <input type="date" class="form-control" id="fechad">
+                <input type="date" name="fechad" class="form-control" id="fechad">
             </div>
             <div class="col-md-8">
                 <label for="inputCity" class="form-label">Domicilio de entrega del producto</label>
-                <input type="text" class="form-control" id="domiciliod">
+                <input type="text" name="domiciliod" class="form-control" id="domiciliod">
             </div>
             <div class="col-md-8">
                 <label for="inputEmail4" class="form-label">Nombre de la empresa de distribucion</label>
-                <input type="text" class="form-control" id="distribuciond">
+                <input type="text" name="distribuciond" class="form-control" id="distribuciond">
             </div>
             <div class="col-md-8">
                 <label for="inputCity" class="form-label">Zona de influencia de distribución</label>
-                <input type="text" class="form-control" id="zonad">
+                <input type="text" name="zonad" class="form-control" id="zonad">
             </div>
             <div class="col-md-8">
                 <label for="inputCity" class="form-label">Nombre de usuario</label>
-                <input type="text" class="form-control" id="usuario">
+                <input type="text" name="usuariod" class="form-control" id="usuario">
             </div>
         </div>
       
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary" id="submit">Guardar</button>
+          <button type="submit" class="btn btn-primary" id="submit12">Guardar</button>
         </div>
         </form>
       </div>
@@ -205,58 +204,56 @@ if($arregloUsuario['nivel'] != 'admin'){
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="../php/insertar_producto.php" method="POST" enctype="multipart/form-data">
+        <form action="../php/insertar_tienda.php" method="POST" enctype="multipart/form-data">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Ingresa Tienda</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
         <div class="col-md-8">
+                <input type="text" name="tienda" class="form-control" id="tienda" hidden value="tienda">
                 <label for="inputEmail4" class="form-label">Correo Electronico</label>
-                <input type="email" class="form-control" id="inputEmail4">
+                <input type="email" name="correot" class="form-control" id="inputEmail4">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="inputPassword4">
+                <input type="password" name="contrat" class="form-control" id="inputPassword4">
             </div>
             <div class="col-md-8">
                 <label for="inputEmail4" class="form-label">Nombre de la tienda</label>
-                <input type="text" class="form-control" id="inputEmail4">
+                <input type="text" name="nombret" class="form-control" id="inputEmail4">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">RFC</label>
-                <input type="text" class="form-control" id="inputPassword4">
+                <input type="text" name="rfct" class="form-control" id="inputPassword4">
             </div>
             <div class="col-md-8">
-                <label for="inputPassword4" class="form-label">Constancia de situacion fiscal</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
+            <label for="img">Constancia de situacion fiscal</label>
+            <input type="file" name="constanciat" placeholder="img" id="img" class="form-control" >
             </div>
             <div class="col-md-8">
                 <label for="inputEmail4" class="form-label">Fecha de inicio como cliente</label>
-                <input type="date" class="form-control" id="inputEmail4">
+                <input type="date" name="fechat" class="form-control" id="inputEmail4">
             </div>
             <div class="col-md-8">
-                <label for="inputPassword4" class="form-label">Ciudad</label>
-                <input type="text" class="form-control" id="inputPassword4">
+                <label for="inputPassword4" class="form-label">Ubicaciones</label>
+                <input type="text" name="ciudadt" class="form-control" id="inputPassword4">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">Telefono</label>
-                <input type="number" class="form-control" id="inputPassword4">
+                <input type="number" name="telefonot" class="form-control" id="inputPassword4">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">Cedis</label>
-                <input type="text" class="form-control" id="inputPassword4">
+                <input type="text" name="cedist" class="form-control" id="inputPassword4">
             </div>
             <div class="col-md-8">
                 <label for="inputPassword4" class="form-label">Domicilio de entrega</label>
-                <input type="text" class="form-control" id="inputPassword4">
+                <input type="text" name="domiciliot" class="form-control" id="inputPassword4">
             </div>
             <div class="col-md-8">
                 <label for="inputCity" class="form-label">Nombre de usuario</label>
-                <input type="text" class="form-control" id="usuario">
+                <input type="text" name="usuariot" class="form-control" id="usuario">
             </div>
         </div>
         <div class="modal-footer">

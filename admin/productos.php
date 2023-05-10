@@ -7,7 +7,7 @@ if(!isset($_SESSION['datos_login'])){
 }
 $arregloUsuario = $_SESSION['datos_login'];
 
-if($arregloUsuario['nivel'] != 'admin'){
+if($arregloUsuario['tipo'] != 'admin'){
   header("Location: ../index.php");
 }
 $resultado = $conexion->query("select productos.*, categorias.nombre as cat from productos 
@@ -52,9 +52,7 @@ inner join categorias on productos.id_categoria = categorias.id order by id DESC
    <?php include "./layouts/header.php"; ?>
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="./dashboard/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+
 
 
 

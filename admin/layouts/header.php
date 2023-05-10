@@ -26,9 +26,7 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../images/users/<?php echo $arregloUsuario['imagen']; ?>" class="img-circle elevation-2" alt="<?php echo $arregloUsuario['nombre']; ?>">
-        </div>
+
         <div class="info">
           <a href="#" class="d-block"><?php echo $arregloUsuario['nombre']; ?></a>
         </div>
@@ -68,7 +66,7 @@
             </a>
           </li>
           <?php
-          if($arregloUsuario['nivel'] == 'admin'){
+          if($arregloUsuario['tipo'] == 'admin'){
 
           
           

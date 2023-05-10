@@ -7,7 +7,7 @@ if(!isset($_SESSION['datos_login'])){
 }
 $arregloUsuario = $_SESSION['datos_login'];
 
-if($arregloUsuario['nivel'] != 'admin'){
+if($arregloUsuario['tipo'] != 'admin'){
   header("Location: ../index.php");
 }
 $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono, usuario.email from  ventas inner join usuario on ventas.id_usuario = usuario.id")or die($conexion->error);
@@ -154,14 +154,11 @@ $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono
 
         </table> 
 
-
-
-
       </div>
     </div>
   </div>
   <?php }?>
-  
+
 </div>
         
       </div><!-- /.container-fluid -->
