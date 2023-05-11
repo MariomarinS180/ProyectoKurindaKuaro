@@ -10,7 +10,7 @@ $arregloUsuario = $_SESSION['datos_login'];
 if($arregloUsuario['tipo'] != 'admin'){
   header("Location: ../index.php");
 }
-$resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono, usuario.email from  ventas inner join usuario on ventas.id_usuario = usuario.id")or die($conexion->error);
+$resultado = $conexion->query("select ventas.*, usuarios.nombre, usuarios.telefono, usuarios.correo from  ventas inner join usuarios on ventas.id_usuario = usuarios.id")or die($conexion->error);
 
 ?>
 
@@ -60,13 +60,11 @@ $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Pedidos</h1>
+            <h1 class="m-0">Pedidos pendientes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6 text-right">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <i class="fa fa-plus"></i> Insertar Producto
-            </button>
+
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -76,26 +74,9 @@ $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <?php
-        if(isset($_GET['error'])){
-        ?>
-        
-        <div class="alert alert-danger" role="alert">
-        <?php echo $_GET['error']; ?>
-        </div>
 
-        <?php } ?>
-
-        <?php
-        if(isset($_GET['success'])){
-        ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Agregado Correctamente</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php } ?>
      
-        <div class="accordion" id="accordionExample">
+        <div class="accordion" id="accordionExample" >
             <?php 
             while($f=mysqli_fetch_array($resultado)){
 
@@ -103,16 +84,16 @@ $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono
             ?>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading<?php echo $f['id'];?>">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $f['id'];?>" aria-expanded="true" aria-controls="collapseOne">
-                    <?php echo $f['fecha'].'-'.$f['nombre'];?>
+                    <button class="accordion-button" style="item-align:center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $f['id'];?>" aria-expanded="true" aria-controls="collapseOne">
+                    <?php echo ' Fecha del pedido: '.$f['fecha'].'         Nombre del cliente: '.$f['nombre'];?>
                     </button>
                 </h2>
-        <div id="collapse<?php echo $f['id'];?>" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapse<?php echo $f['id'];?>" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
         <p>Nombre Cliente: <?php echo $f['nombre'];?></p>
-        <p>Email: <?php echo $f['email'];?></p>
+        <p>Email: <?php echo $f['correo'];?></p>
         <p>Telefono : <?php echo $f['telefono'];?></p>
-        <p>Status: <?php echo $f['status'];?></p>
+        <p>Status: <?php echo $f['estado'];?></p> 
         <p class="h6"><strong>Datos de envio:</strong></p>
         <?php 
             $re = $conexion->query("select * from envios where id_ventas=".$f['id'])or die($conexion->error);
@@ -373,7 +354,7 @@ $resultado = $conexion->query("select ventas.*, usuario.nombre, usuario.telefono
       var precio=$(this).data('precio');
       var inventario=$(this).data('inventario');
       var categoria=$(this).data('categoria');
-      var talla=$(this).data('talla');
+      var talla=$(this).data('empaque');
       var color=$(this).data('color');
       
       $("#nombreEdit").val(nombre);

@@ -361,7 +361,7 @@ inner join categorias on productos.id_categoria = categorias.id order by id DESC
       var precio=$(this).data('precio');
       var inventario=$(this).data('inventario');
       var categoria=$(this).data('categoria');
-      var talla=$(this).data('talla');
+      var talla=$(this).data('empaque');
       var color=$(this).data('color');
       
       $("#nombreEdit").val(nombre);
